@@ -1,30 +1,77 @@
-# React + TypeScript + Vite
+# Pattern - component encapsulation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Most applications will use a component library (MUI, Mantine, antd, etc). Building custom components is time-consuming and likely to result in components that are missing standard accessibility features such as keyboard control.
 
-Currently, two official plugins are available:
+## Problems
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Component libraries are extremely feature rich and very capable. However there will always be problems when using these libraries. The most common problems are:
 
-## Expanding the ESLint configuration
+- Differences between the design and the component library
+  - Visual differences such as coloring. This is typically solved by using theming.
+  - Behavior differences (missing features or features not working as needed)
+- Bugs in the component library
+- Component library becomes unmaintained
+- Keeping up with constant library changes
+- Security problems
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Solutions
 
-- Configure the top-level `parserOptions` property like this:
+The most common and resilient way to reduce friction between the application and a component library is to provide an abstraction. Instead of using the library components directly, create a wrapper component that exposes only the bare minimum needed properties.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+
+This has the following benefits:
+
+- Ensures consistency
+- Can simplify and unify usage
+- Enforce user experience guidelines established by the design.  Open-source component libraries are too flexible.  They allow developers to create components that don't follow best practices or are inconsistent with company design principles.
+- Speeds up component development and testing
+- Allows global changes of all usages in the application
+- Potentially allows global workarounds for library bugs
+- In extreme circumstances, it allows replacement of a component with a custom solution or a different library
+- Open-source component libraries are often abandoned or completely reworked once / year.  It requires significant effort for the development team to keep up-to-date.  This introduces bugs.  **This often forces the development team to prioritize upgrades over new features.**
+
+Example:
+
+### Custom Button
+
+```jsx
+<Button label={'My Button'} icon={"Search"} variant={'primary'} />
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### MUI Button
+
+```jsx
+<Button background={"red"} color={"white"} variant="contained">
+  <label style={{fontSize: "0.75rem", fontWeight: 400, marginRight: 8}}>My Button</label>
+  <SearchIcon style={{width: 32, height: 32}} />
+</Button>
+```
+
+MUI Button has the following problems:
+
+- every button usage has the copy/paste all of the code above
+- any changes will have to be updated to every usage
+- no focus or hover state
+- label does not truncate to a max width with ellipses
+
+The custom button also nicely maps to the design
+Primary variant - "call to action", etc
+Secondary variant - "cancel" button, etc
+Warn variant - "red" button to inform uses of destructive actions
+
+
+# Using Storybook to develop common components
+
+## Advantages
+
+Reduces development time by providing easy methods to test all states
+Provides auto-generated documentation
+Encourages standardization and simplified props
+Allows easy testing without requiring developers to navigate complex flows
+Has methods for switching themes
+Allows responsive display testing
+
+## Disadvantages
+
+Storybook has many dependencies and changes often
+Takes time to develop stories
