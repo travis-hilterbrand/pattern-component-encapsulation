@@ -18,7 +18,6 @@ Component libraries are extremely feature rich and very capable. However there w
 
 The most common and resilient way to reduce friction between the application and a component library is to provide an abstraction. Instead of using the library components directly, create a wrapper component that exposes only the bare minimum needed properties.
 
-
 This has the following benefits:
 
 - Ensures consistency
@@ -30,7 +29,11 @@ This has the following benefits:
 - In extreme circumstances, it allows replacement of a component with a custom solution or a different library
 - Open-source component libraries are often abandoned or completely reworked once / year.  It requires significant effort for the development team to keep up-to-date.  This introduces bugs.  **This often forces the development team to prioritize upgrades over new features.**
 
-Example:
+Examples:
+
+### Labels / Typography
+
+TODO
 
 ### Custom Button
 
@@ -59,10 +62,9 @@ Primary variant - "call to action", etc
 Secondary variant - "cancel" button, etc
 Warn variant - "red" button to inform uses of destructive actions
 
+## Using Storybook to develop common components
 
-# Using Storybook to develop common components
-
-## Advantages
+### Advantages
 
 Reduces development time by providing easy methods to test all states
 Provides auto-generated documentation
@@ -70,6 +72,7 @@ Encourages standardization and simplified props
 Allows easy testing without requiring developers to navigate complex flows
 Has methods for switching themes
 Allows responsive display testing
+Accessibility testing
 
 ## Disadvantages
 
