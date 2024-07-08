@@ -5,7 +5,7 @@ export type ButtonVariants = "primary" | "secondary";
 
 type BaseButtonProps = Pick<
   HTMLProps<HTMLButtonElement>,
-  "className" | "disabled" | "id" | "style" | "type" | "onClick"
+  "className" | "disabled" | "id" | "style" | "onClick"
 >;
 type ButtonProps = BaseButtonProps & {
   label: string;
@@ -42,13 +42,7 @@ const colorMap: { [K in ButtonVariants]: string } = {
  */
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const {
-      label,
-      style,
-      type = "button",
-      variant = "primary",
-      ...rest
-    } = props;
+    const { label, style, variant = "primary", ...rest } = props;
 
     const background = backgroundMap[variant];
     const color = colorMap[variant];
