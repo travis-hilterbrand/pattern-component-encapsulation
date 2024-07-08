@@ -33,7 +33,7 @@ Examples:
 
 ### Labels / Typography
 
-TODO
+
 
 ### Custom Button
 
@@ -45,7 +45,7 @@ TODO
 
 ```jsx
 <Button background={"red"} color={"white"} variant="contained">
-  <label style={{fontSize: "0.75rem", fontWeight: 400, marginRight: 8}}>My Button</label>
+  <label style={{fontSize: "0.75rem", fontWeight: 400, marginRight: 8}}>Delete Button</label>
   <SearchIcon style={{width: 32, height: 32}} />
 </Button>
 ```
@@ -64,6 +64,11 @@ Warn variant - "red" button to inform uses of destructive actions
 
 ## Using Storybook to develop common components
 
+What is Storybook?
+How to install?
+Interface walkthrough
+Controls / actions walkthrough
+
 ### Advantages
 
 Reduces development time by providing easy methods to test all states
@@ -72,6 +77,7 @@ Encourages standardization and simplified props
 Allows easy testing without requiring developers to navigate complex flows
 Has methods for switching themes
 Allows responsive display testing
+Theme testing - https://storybook.js.org/addons/@storybook/addon-themes
 Accessibility testing
 
 ## Disadvantages
